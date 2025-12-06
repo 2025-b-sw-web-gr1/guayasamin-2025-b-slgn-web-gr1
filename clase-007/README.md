@@ -1,13 +1,13 @@
-🎵 mi-musica-favorita
+## 🎵 mi-musica-favorita
 
 Sara Lizbeth Guayasamín Nacimba
 
-🌸 Mi Música Favorita – HTML + Tailwind + Live Server
+### 🌸 Mi Música Favorita – HTML + Tailwind + Live Server
 
 Proyecto frontend simple que muestra una galería de mis artistas favoritos usando HTML, TailwindCSS (CDN) y diseño responsivo.
 No requiere Node ni dependencias adicionales: solo Visual Studio Code y la extensión Live Server (Go Live).
 
-🚀 Cómo ejecutar el proyecto
+### 🚀 Cómo ejecutar el proyecto
 
 Abrir el proyecto en VSCode
 
@@ -21,7 +21,8 @@ El sitio se abrirá automáticamente en el navegador
 ✔ Sin consola
 ✔ Solo abrir y correr
 
-📂 Estructura del proyecto
+### 📂 Estructura del proyecto
+
 📁 proyecto-musica/
 │── index.html
 │── 📁 portadas/
@@ -32,7 +33,7 @@ El sitio se abrirá automáticamente en el navegador
 │     ├── doors.jpg
 │     └── muse.jpg
 
-🛠️ Tecnologías utilizadas
+### 🛠️ Tecnologías utilizadas
 
 HTML5
 
@@ -44,7 +45,7 @@ Google Fonts
 
 Live Server
 
-🎧 Qué muestra el proyecto
+### 🎧 Qué muestra el proyecto
 
 Encabezado con navegación
 
@@ -56,7 +57,7 @@ Botones de géneros
 
 Footer con estilo rosado temático
 
-💗 ¿Por qué usar HTML + Tailwind?
+### 💗 ¿Por qué usar HTML + Tailwind?
 
 Estilo rápido sin crear archivos CSS externos
 
@@ -66,7 +67,7 @@ Facilidad de mantenimiento
 
 Ideal para proyectos visuales como galerías y catálogos
 
-🌱 Ideas para mejorar
+### 🌱 Ideas para mejorar
 
 Añadir reproductor de audio
 
@@ -78,10 +79,11 @@ Modo oscuro
 
 Transiciones y animaciones más avanzadas
 
-📘 Archivos principales
+### 📘 Archivos principales
 
 index.html – contiene toda la estructura del sitio
 
 portadas/ – imágenes de los artistas
 
 CDN de Tailwind – estilos sin instalación local
+
