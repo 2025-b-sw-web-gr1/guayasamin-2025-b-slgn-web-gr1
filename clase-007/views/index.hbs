@@ -1,0 +1,27 @@
+<section class="hero">
+  <img src="/portadas/cien_anos.jpg" alt="Destacado" style="width:110px;height:150px;object-fit:cover;border-radius:6px;" />
+  <div class="info">
+    <h2>Bienvenido a BookStream :3</h2>
+    <p style="margin:.35rem 0 0;color:rgba(255,255,255,0.85)">Explora nuestro catálogo. Haz clic en "Leer ahora" para abrir el libro (demo).</p>
+  </div>
+</section>
+
+<section class="catalog" aria-live="polite">
+  {{#each libros}}
+    <article class="card" role="article">
+      {{#if disponible}}
+        <span class="badge available">Disponible</span>
+      {{else}}
+        <span class="badge soon">Próximamente</span>
+      {{/if}}
+      <img class="cover" src="{{portada}}" alt="Portada de {{titulo}}" />
+      <button class="read-btn" aria-label="Leer {{titulo}}">📖 Leer ahora</button>
+
+      <div class="meta">
+        <h3>{{titulo}}</h3>
+        <p>{{autor}} · {{anio_publicacion}}</p>
+      </div>
+    </article>
+  {{/each}}
+</section>
+
