@@ -1,0 +1,755 @@
+openapi: 3.0.0
+info:
+  title: JSONPlaceholder API - Documentación Técnica Sara Guayasamin
+  description: |
+    Especificación técnica para la API pública JSONPlaceholder.
+    
+    Este servicio permite simular operaciones CRUD (Crear, Leer, Actualizar, Borrar) sobre recursos comunes como publicaciones, usuarios y tareas.
+    
+    > **Aviso Importante**: Esta API es un "fake online REST API". Los cambios realizados mediante POST/PUT/DELETE son simulados y **no persisten** en la base de datos real.
+  version: 1.0.1
+  contact:
+    name: Soporte JSONPlaceholder
+    url: https://jsonplaceholder.typicode.com
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://jsonplaceholder.typicode.com
+    description: Entorno de Producción
+
+tags:
+  - name: Posts
+    description: Gestión de artículos y publicaciones
+  - name: Comments
+    description: Interacciones y comentarios en posts
+  - name: Albums
+    description: Colecciones de fotos
+  - name: Photos
+    description: Recursos multimedia (imágenes)
+  - name: Todos
+    description: Listas de tareas pendientes
+  - name: Users
+    description: Información de perfiles de usuario
+
+paths:
+  # --- RUTAS DE POSTS ---
+  /posts:
+    get:
+      tags: [Posts]
+      summary: Listar publicaciones
+      description: Recupera el listado completo de artículos disponibles en el sistema.
+      responses:
+        '200':
+          description: Operación exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+    post:
+      tags: [Posts]
+      summary: Publicar nuevo artículo
+      description: Simula la creación de un nuevo recurso Post.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '201':
+          description: Recurso creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+
+  /posts/{id}:
+    parameters:
+      - $ref: '#/components/parameters/ResourceId'
+    get:
+      tags: [Posts]
+      summary: Consultar post por ID
+      description: Recupera un único artículo basado en su identificador.
+      responses:
+        '200':
+          description: Datos del post recuperados
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags: [Posts]
+      summary: Reemplazar post
+      description: Actualiza la totalidad de los datos de una publicación.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '200':
+          description: Actualización completa exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+    patch:
+      tags: [Posts]
+      summary: Modificar post parcialmente
+      description: Actualiza solo los campos enviados en el cuerpo de la petición.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: "Título modificado"
+      responses:
+        '200':
+          description: Modificación parcial exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+    delete:
+      tags: [Posts]
+      summary: Borrar publicación
+      description: Elimina el registro seleccionado.
+      responses:
+        '200':
+          description: Recurso eliminado
+
+  /posts/{id}/comments:
+    get:
+      tags: [Posts, Comments]
+      summary: Ver comentarios de un post
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Listado de comentarios asociados
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+
+  # --- RUTAS DE COMMENTS ---
+  /comments:
+    get:
+      tags: [Comments]
+      summary: Listar todos los comentarios
+      parameters:
+        - name: postId
+          in: query
+          description: Filtrar por ID de publicación asociada
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+    post:
+      tags: [Comments]
+      summary: Agregar comentario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+      responses:
+        '201':
+          description: Comentario registrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+
+  /comments/{id}:
+    parameters:
+      - $ref: '#/components/parameters/ResourceId'
+    get:
+      tags: [Comments]
+      summary: Detalle del comentario
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags: [Comments]
+      summary: Editar comentario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+      responses:
+        '200':
+          description: Comentario actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+    delete:
+      tags: [Comments]
+      summary: Eliminar comentario
+      responses:
+        '200':
+          description: Eliminado correctamente
+
+  # --- RUTAS DE ALBUMS ---
+  /albums:
+    get:
+      tags: [Albums]
+      summary: Catálogo de álbumes
+      parameters:
+        - name: userId
+          in: query
+          description: Filtro por autor (usuario)
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Album'
+    post:
+      tags: [Albums]
+      summary: Crear álbum
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Album'
+      responses:
+        '201':
+          description: Creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Album'
+
+  /albums/{id}:
+    parameters:
+      - $ref: '#/components/parameters/ResourceId'
+    get:
+      tags: [Albums]
+      summary: Consultar álbum
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Album'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags: [Albums]
+      summary: Modificar álbum
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Album'
+      responses:
+        '200':
+          description: Actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Album'
+    delete:
+      tags: [Albums]
+      summary: Borrar álbum
+      responses:
+        '200':
+          description: Eliminado
+
+  /albums/{id}/photos:
+    get:
+      tags: [Albums, Photos]
+      summary: Fotos del álbum
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Galería de fotos del álbum
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Photo'
+
+  # --- RUTAS DE PHOTOS ---
+  /photos:
+    get:
+      tags: [Photos]
+      summary: Listado global de fotos
+      description: Obtiene todas las fotos o filtra por álbum.
+      parameters:
+        - name: albumId
+          in: query
+          description: ID del álbum para filtrar
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Photo'
+    post:
+      tags: [Photos]
+      summary: Subir foto (simulado)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Photo'
+      responses:
+        '201':
+          description: Foto creada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Photo'
+
+  /photos/{id}:
+    parameters:
+      - $ref: '#/components/parameters/ResourceId'
+    get:
+      tags: [Photos]
+      summary: Ver foto individual
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Photo'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags: [Photos]
+      summary: Actualizar metadatos de foto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Photo'
+      responses:
+        '200':
+          description: Actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Photo'
+    delete:
+      tags: [Photos]
+      summary: Eliminar foto
+      responses:
+        '200':
+          description: Eliminada
+
+  # --- RUTAS DE TODOS ---
+  /todos:
+    get:
+      tags: [Todos]
+      summary: Lista de tareas
+      parameters:
+        - name: userId
+          in: query
+          description: Usuario asignado
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Todo'
+    post:
+      tags: [Todos]
+      summary: Nueva tarea
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todo'
+      responses:
+        '201':
+          description: Tarea registrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+
+  /todos/{id}:
+    parameters:
+      - $ref: '#/components/parameters/ResourceId'
+    get:
+      tags: [Todos]
+      summary: Consultar tarea
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags: [Todos]
+      summary: Modificar tarea
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todo'
+      responses:
+        '200':
+          description: Actualizada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+    delete:
+      tags: [Todos]
+      summary: Borrar tarea
+      responses:
+        '200':
+          description: Eliminada
+
+  # --- RUTAS DE USERS ---
+  /users:
+    get:
+      tags: [Users]
+      summary: Directorio de usuarios
+      responses:
+        '200':
+          description: Listado de usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      tags: [Users]
+      summary: Registrar usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Usuario creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /users/{id}:
+    parameters:
+      - $ref: '#/components/parameters/ResourceId'
+    get:
+      tags: [Users]
+      summary: Perfil de usuario
+      responses:
+        '200':
+          description: Datos del usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags: [Users]
+      summary: Actualizar perfil
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    delete:
+      tags: [Users]
+      summary: Dar de baja usuario
+      responses:
+        '200':
+          description: Usuario eliminado
+
+  /users/{id}/posts:
+    get:
+      tags: [Users, Posts]
+      summary: Publicaciones del usuario
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Lista de posts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+
+  /users/{id}/albums:
+    get:
+      tags: [Users, Albums]
+      summary: Álbumes del usuario
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Lista de álbumes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Album'
+
+  /users/{id}/todos:
+    get:
+      tags: [Users, Todos]
+      summary: Tareas del usuario
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Todo'
+
+components:
+  parameters:
+    ResourceId:
+      name: id
+      in: path
+      description: Identificador numérico único del recurso objetivo
+      required: true
+      schema:
+        type: integer
+        example: 1
+
+  responses:
+    NotFound:
+      description: El recurso solicitado no existe en el servidor.
+
+  schemas:
+    Post:
+      type: object
+      required: [userId, title, body]
+      properties:
+        userId:
+          type: integer
+          example: 1
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "Título de ejemplo del artículo"
+        body:
+          type: string
+          example: "Contenido extenso del artículo..."
+
+    Comment:
+      type: object
+      required: [postId, name, email, body]
+      properties:
+        postId:
+          type: integer
+          example: 1
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Nombre del comentarista"
+        email:
+          type: string
+          format: email
+          example: "usuario@correo.com"
+        body:
+          type: string
+          example: "Texto del comentario..."
+
+    Album:
+      type: object
+      required: [userId, title]
+      properties:
+        userId:
+          type: integer
+          example: 1
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "Vacaciones 2024"
+
+    Photo:
+      type: object
+      required: [albumId, title, url, thumbnailUrl]
+      properties:
+        albumId:
+          type: integer
+          example: 1
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "Foto en la playa"
+        url:
+          type: string
+          format: uri
+          example: "https://via.placeholder.com/600/92c952"
+        thumbnailUrl:
+          type: string
+          format: uri
+          example: "https://via.placeholder.com/150/92c952"
+
+    Todo:
+      type: object
+      required: [userId, title, completed]
+      properties:
+        userId:
+          type: integer
+          example: 1
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "Terminar la documentación API"
+        completed:
+          type: boolean
+          example: false
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Leanne Graham"
+        username:
+          type: string
+          example: "Bret"
+        email:
+          type: string
+          format: email
+          example: "Sincere@april.biz"
+        address:
+          $ref: '#/components/schemas/Address'
+        phone:
+          type: string
+          example: "1-770-736-8031"
+        website:
+          type: string
+          example: "hildegard.org"
+        company:
+          $ref: '#/components/schemas/Company'
+
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          example: "Kulas Light"
+        suite:
+          type: string
+          example: "Apt. 556"
+        city:
+          type: string
+          example: "Gwenborough"
+        zipcode:
+          type: string
+          example: "92998-3874"
+        geo:
+          $ref: '#/components/schemas/Geo'
+
+    Geo:
+      type: object
+      properties:
+        lat:
+          type: string
+          example: "-37.3159"
+        lng:
+          type: string
+          example: "81.1496"
+
+    Company:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Romaguera-Crona"
+        catchPhrase:
+          type: string
+          example: "Multi-layered client-server neural-net"
+        bs:
+          type: string
+          example: "harness real-time e-markets"
