@@ -1,0 +1,29 @@
+meta {
+  name: Crear nueva receta
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://jsonplaceholder.typicode.com/posts
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "Enchiladas de Queso",
+    "description": "Receta tradicional con salsa roja",
+    "servings": 4,
+    "timeMinutes": 40,
+    "difficulty": "Medio"
+  }
+}
+
+settings {
+  insecure: true
+}

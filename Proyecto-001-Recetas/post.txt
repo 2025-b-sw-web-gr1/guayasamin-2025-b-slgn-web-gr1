@@ -1,0 +1,19 @@
+POST para canal "003 - Proyecto 01" (Entrega Proyecto 001 - Recetas)
+
+Asunto: Proyecto 001 - API Recetas y Ingredientes (Entrega)
+
+Hola profesores y compañeros,
+
+Adjuntamos el proyecto de API RESTful para la relación 1-a-muchos: Recetas -> Ingredientes.
+Incluye:
+- `swagger.yaml` (OpenAPI 3.0)
+- Colección Bruno con 11 peticiones: CRUD Recetas, CRUD Ingredientes, y endpoint de relación `/recetas/{id}/ingredientes`.
+- `README.md` y `DOCUMENTACION.txt` con instrucciones de uso.
+
+Integrantes del grupo:
+- Sara Guayasamín
+
+Link al directorio: `Proyecto-001-Recetas` en el repo.
+
+Saludos,
+Sara Guayasamín

@@ -1,0 +1,216 @@
+openapi: 3.0.0
+info:
+  title: API de Recetas y Ingredientes
+  description: API RESTful para gestionar recetas y sus ingredientes (relación 1-a-muchos)
+  version: 1.0.0
+  contact:
+    name: Sara Guayasamín
+    email: sara.guayasamin@example.com
+servers:
+  - url: https://api.ejemplo.com
+    description: Servidor principal
+
+tags:
+  - name: Recetas
+    description: Operaciones relacionadas con recetas
+  - name: Ingredientes
+    description: Operaciones relacionadas con ingredientes
+
+paths:
+  /recetas:
+    get:
+      tags: [Recetas]
+      summary: Obtener todas las recetas
+      responses:
+        '200':
+          description: Lista de recetas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Receta'
+    post:
+      tags: [Recetas]
+      summary: Crear nueva receta
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecetaInput'
+      responses:
+        '201':
+          description: Receta creada
+
+  /recetas/{id}:
+    get:
+      tags: [Recetas]
+      summary: Obtener receta por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Receta encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receta'
+    put:
+      tags: [Recetas]
+      summary: Actualizar receta
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecetaInput'
+      responses:
+        '200':
+          description: Receta actualizada
+    delete:
+      tags: [Recetas]
+      summary: Eliminar receta
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '204':
+          description: Eliminado
+
+  /recetas/{id}/ingredientes:
+    get:
+      tags: [Ingredientes]
+      summary: Obtener ingredientes de una receta
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Lista de ingredientes de la receta
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ingrediente'
+
+  /ingredientes:
+    get:
+      tags: [Ingredientes]
+      summary: Obtener todos los ingredientes
+      responses:
+        '200':
+          description: Lista de ingredientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ingrediente'
+    post:
+      tags: [Ingredientes]
+      summary: Crear nuevo ingrediente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngredienteInput'
+      responses:
+        '201':
+          description: Ingrediente creado
+
+  /ingredientes/{id}:
+    get:
+      tags: [Ingredientes]
+      summary: Obtener ingrediente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Ingrediente encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingrediente'
+    put:
+      tags: [Ingredientes]
+      summary: Actualizar ingrediente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngredienteInput'
+      responses:
+        '200':
+          description: Ingrediente actualizado
+    delete:
+      tags: [Ingredientes]
+      summary: Eliminar ingrediente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '204':
+          description: Eliminado
+
+components:
+  schemas:
+    Receta:
+      type: object
+      properties:
+        id: { type: integer }
+        title: { type: string }
+        description: { type: string }
+        servings: { type: integer }
+        timeMinutes: { type: integer }
+        difficulty: { type: string }
+    RecetaInput:
+      type: object
+      required: [title]
+      properties:
+        title: { type: string }
+        description: { type: string }
+        servings: { type: integer }
+        timeMinutes: { type: integer }
+        difficulty: { type: string }
+    Ingrediente:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        amount: { type: number }
+        unit: { type: string }
+        recetaId: { type: integer }
+    IngredienteInput:
+      type: object
+      required: [name, recetaId]
+      properties:
+        name: { type: string }
+        amount: { type: number }
+        unit: { type: string }
+        recetaId: { type: integer }

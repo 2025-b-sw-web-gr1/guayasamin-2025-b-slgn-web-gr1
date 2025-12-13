@@ -1,0 +1,28 @@
+meta {
+  name: Actualizar ingrediente completo
+  type: http
+  seq: 10
+}
+
+put {
+  url: https://jsonplaceholder.typicode.com/comments/1
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Queso Oaxaca",
+    "amount": 350,
+    "unit": "gramos",
+    "recetaId": 1
+  }
+}
+
+settings {
+  insecure: true
+}

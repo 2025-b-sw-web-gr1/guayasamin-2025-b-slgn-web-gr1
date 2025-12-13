@@ -1,0 +1,22 @@
+DOCUMENTACIÓN: API Recetas y Ingredientes (Proyecto-001-Recetas)
+
+- Diseño de API RESTful con relación 1-a-muchos (Recetas / Ingredientes)
+- Endpoints y ejemplos en Bruno
+- Swagger/OpenAPI (archivo swagger.yaml)
+- Recomendaciones para pruebas en Bruno y Swagger Editor
+CONTENIDO:
+- Diseño de API RESTful con relación 1-a-muchos (Recetas / Ingredientes)
+- Endpoints y ejemplos en Bruno
+- Swagger/OpenAPI (archivo swagger.yaml)
+- Recomendaciones para pruebas en Bruno y Swagger Editor
+- Diseño de API RESTful con relación 1-a-muchos (Recetas / Ingredientes)
+- Endpoints y ejemplos en Bruno
+- Swagger/OpenAPI (archivo swagger.yaml)
+- Recomendaciones para pruebas en Bruno y Swagger Editor
+
+NOTAS:
+- Los endpoints están diseñados para uso en ejercicio de clase y pueden apuntar a jsonplaceholder o a un servidor de prueba.
+- Para pruebas reales, configurar la URL base en los `.bru` y en `swagger.yaml`.
+
+AUTOR:
+- Sara Guayasamín

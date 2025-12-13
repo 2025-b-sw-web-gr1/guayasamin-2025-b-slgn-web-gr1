@@ -1,0 +1,29 @@
+meta {
+  name: Actualizar receta completa
+  type: http
+  seq: 4
+}
+
+put {
+  url: https://jsonplaceholder.typicode.com/posts/1
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "Enchiladas de Queso",
+    "description": "Receta tradicional con salsa roja y queso fundido",
+    "servings": 4,
+    "timeMinutes": 45,
+    "difficulty": "Medio"
+  }
+}
+
+settings {
+  insecure: true
+}
