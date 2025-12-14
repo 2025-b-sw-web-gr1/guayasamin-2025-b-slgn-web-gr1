@@ -80,4 +80,3 @@ Proyecto-001-Recetas/
 
 ---
 
-¡Listo! Puedes usar `swagger.yaml` y los archivos `.bru` para hacer una demostración.
