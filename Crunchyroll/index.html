@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crunchyroll - Página de Inicio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="imagenes/logo.jpg" alt="Crunchyroll Logo">
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="#">Novedades</a></li>
+                <li><a href="#">Popular</a></li>
+                <li><a href="#">Simulcasts</a></li>
+                <li><a href="#">Categorías</a></li>
+                <li><a href="#">Juegos</a></li>
+                <li><a href="#">Noticias</a></li>
+            </ul>
+        </nav>
+        <div class="search-profile">
+            <input type="text" placeholder="Buscar...">
+            <button>Perfil</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <img src="imagenes/logoOne.png" alt="One Piece Logo" class="logo-image">
+            
+            <div class="hero-meta">
+                <span class="meta-tag">12+</span>
+                <span class="bullet">•</span>
+                <span>Subtitulado</span>
+                <span class="bullet">•</span>
+                <span>Acción, Aventura</span>
+            </div>
+
+            <p class="anime-desc">
+                Únete a la aventura de Luffy y su tripulación en busca del tesoro más grande del mundo, 
+                enfrentando piratas, marines y misterios en el Grand Line.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="btn-primary">
+                    <span class="play-icon">▶</span> COMENZAR A VER S1 E1
+                </button>
+                
+                <button class="btn-bookmark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="carousel-indicators">
+                <span class="dash"></span>
+                <span class="dash active"></span> <span class="dash"></span>
+                <span class="dash"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="populares">
+        <h2>Animes Populares</h2>
+        <div class="grid-container">
+            <button class="arrow left">&lt;</button>
+            <div class="grid-animes">
+                <div class="anime-card">
+                    <div class="card-image">
+                        <img src="imagenes/naruto.jpg" alt="Naruto">
+                        <div class="overlay">
+                            <div class="rating">4.8 ★</div>
+                            <div class="episodes">9 Temporadas | 220 Episodios</div>
+                            <div class="synopsis">Naruto Uzumaki es un joven ninja con un sueño: convertirse en Hokage, el líder de su aldea.</div>
+                            <div class="actions">
+                                <button class="play-btn">▶ Play</button>
+                                <button class="add-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Naruto</h3>
+                    <p>Sub | Dob</p>
+                </div>
+                <div class="anime-card">
+                    <div class="card-image">
+                        <img src="imagenes/aot.jpg" alt="Attack on Titan">
+                        <div class="overlay">
+                            <div class="rating">4.9 ★</div>
+                            <div class="episodes">4 Temporadas | 87 Episodios</div>
+                            <div class="synopsis">En un mundo donde la humanidad lucha contra titanes gigantes, Eren y sus amigos se unen para sobrevivir.</div>
+                            <div class="actions">
+                                <button class="play-btn">▶ Play</button>
+                                <button class="add-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Attack on Titan</h3>
+                    <p>Sub | Dob</p>
+                </div>
+                <div class="anime-card">
+                    <div class="card-image">
+                        <img src="imagenes/demon.jpg" alt="Demon Slayer">
+                        <div class="overlay">
+                            <div class="rating">4.7 ★</div>
+                            <div class="episodes">2 Temporadas | 44 Episodios</div>
+                            <div class="synopsis">Tanjiro Kamado se convierte en un cazador de demonios para salvar a su hermana convertida en demonio.</div>
+                            <div class="actions">
+                                <button class="play-btn">▶ Play</button>
+                                <button class="add-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Demon Slayer</h3>
+                    <p>Sub | Dob</p>
+                </div>
+                <div class="anime-card">
+                    <div class="card-image">
+                        <img src="imagenes/jjk.jpg" alt="Jujutsu Kaisen">
+                        <div class="overlay">
+                            <div class="rating">4.6 ★</div>
+                            <div class="episodes">2 Temporadas | 24 Episodios</div>
+                            <div class="synopsis">Yuji Itadori ingresa al mundo de los hechiceros para luchar contra maldiciones.</div>
+                            <div class="actions">
+                                <button class="play-btn">▶ Play</button>
+                                <button class="add-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Jujutsu Kaisen</h3>
+                    <p>Sub | Dob</p>
+                </div>
+                <div class="anime-card">
+                    <div class="card-image">
+                        <img src="imagenes/chainsaw.jpg" alt="Chainsaw Man">
+                        <div class="overlay">
+                            <div class="rating">4.5 ★</div>
+                            <div class="episodes">1 Temporada | 12 Episodios</div>
+                            <div class="synopsis">Denji, un joven cazador de demonios, se fusiona con un demonio sierra para convertirse en Chainsaw Man.</div>
+                            <div class="actions">
+                                <button class="play-btn">▶ Play</button>
+                                <button class="add-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Chainsaw Man</h3>
+                    <p>Sub | Dob</p>
+                </div>
+                <div class="anime-card">
+                    <div class="card-image">
+                        <img src="imagenes/fullmetal.jpg" alt="Fullmetal Alchemist">
+                        <div class="overlay">
+                            <div class="rating">4.8 ★</div>
+                            <div class="episodes">1 Temporada | 51 Episodios</div>
+                            <div class="synopsis">Los hermanos Elric buscan la piedra filosofal para restaurar sus cuerpos después de un experimento fallido.</div>
+                            <div class="actions">
+                                <button class="play-btn">▶ Play</button>
+                                <button class="add-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Fullmetal Alchemist</h3>
+                    <p>Sub | Dob</p>
+                </div>
+                <div class="anime-card">
+                    <div class="card-image">
+                        <img src="imagenes/dn.jpg" alt="Death Note">
+                        <div class="overlay">
+                            <div class="rating">4.8 ★</div>
+                            <div class="episodes">1 Temporada | 37 Episodios</div>
+                            <div class="synopsis">Light Yagami encuentra un cuaderno que le permite matar a cualquiera escribiendo su nombre.</div>
+                            <div class="actions">
+                                <button class="play-btn">▶ Play</button>
+                                <button class="add-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Death Note</h3>
+                    <p>Sub | Dob</p>
+                </div>
+                <div class="anime-card">
+                    <div class="card-image">
+                        <img src="imagenes/hero.jpg" alt="My Hero Academia">
+                        <div class="overlay">
+                            <div class="rating">4.7 ★</div>
+                            <div class="episodes">6 Temporadas | 138 Episodios</div>
+                            <div class="synopsis">En un mundo de superhéroes, Izuku Midoriya sueña con convertirse en el mejor héroe.</div>
+                            <div class="actions">
+                                <button class="play-btn">▶ Play</button>
+                                <button class="add-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>My Hero Academia</h3>
+                    <p>Sub | Dob</p>
+                </div>
+                <div class="anime-card">
+                    <div class="card-image">
+                        <img src="imagenes/puch.jpg" alt="One Punch Man">
+                        <div class="overlay">
+                            <div class="rating">4.8 ★</div>
+                            <div class="episodes">2 Temporadas | 24 Episodios</div>
+                            <div class="synopsis">Saitama, un superhéroe que derrota a cualquier enemigo con un solo golpe, busca un desafío real.</div>
+                            <div class="actions">
+                                <button class="play-btn">▶ Play</button>
+                                <button class="add-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>One Punch Man</h3>
+                    <p>Sub | Dob</p>
+                </div>
+                <div class="anime-card">
+                    <div class="card-image">
+                        <img src="imagenes/Mob.jpg" alt="Mob Psycho 100">
+                        <div class="overlay">
+                            <div class="rating">4.6 ★</div>
+                            <div class="episodes">3 Temporadas | 37 Episodios</div>
+                            <div class="synopsis">Shigeo Kageyama, un niño con poderes psíquicos, lucha por controlar sus emociones.</div>
+                            <div class="actions">
+                                <button class="play-btn">▶ Play</button>
+                                <button class="add-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Mob Psycho 100</h3>
+                    <p>Sub | Dob</p>
+                </div>
+                <div class="anime-card">
+                    <div class="card-image">
+                        <img src="imagenes/dragon.jpg" alt="Dragon Ball">
+                        <div class="overlay">
+                            <div class="rating">4.7 ★</div>
+                            <div class="episodes">Varias Temporadas | 153 Episodios</div>
+                            <div class="synopsis">Goku y sus amigos buscan las esferas del dragón para conceder deseos.</div>
+                            <div class="actions">
+                                <button class="play-btn">▶ Play</button>
+                                <button class="add-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Dragon Ball</h3>
+                    <p>Sub | Dob</p>
+                </div>
+                <div class="anime-card">
+                    <div class="card-image">
+                        <img src="imagenes/one.jpg" alt="One Piece">
+                        <div class="overlay">
+                            <div class="rating">4.9 ★</div>
+                            <div class="episodes">Varias Temporadas | 1000+ Episodios</div>
+                            <div class="synopsis">Monkey D. Luffy y su tripulación buscan el tesoro más grande del mundo.</div>
+                            <div class="actions">
+                                <button class="play-btn">▶ Play</button>
+                                <button class="add-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>One Piece</h3>
+                    <p>Sub | Dob</p>
+                </div>
+            </div>
+            <button class="arrow right">&gt;</button>
+        </div>
+    </section>
+
+    <script>
+        const grid = document.querySelector('.grid-animes');
+        const leftArrow = document.querySelector('.arrow.left');
+        const rightArrow = document.querySelector('.arrow.right');
+
+        leftArrow.addEventListener('click', () => {
+            grid.scrollBy({ left: -grid.clientWidth, behavior: 'smooth' });
+        });
+
+        rightArrow.addEventListener('click', () => {
+            grid.scrollBy({ left: grid.clientWidth, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
